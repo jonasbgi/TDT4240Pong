@@ -16,6 +16,8 @@ public class MenuState extends State {
     Texture playBtn;
     int playBtnX;
     int playBtnY;
+    int playBtnHeight;
+    int playBtnWidth;
     Rectangle playBtnRect;
 
     public MenuState(GameStateManager gsm) {
@@ -27,6 +29,9 @@ public class MenuState extends State {
 
         playBtnX = Gdx.graphics.getWidth()/2 - playBtn.getWidth()/2;
         playBtnY = Gdx.graphics.getHeight()/2 - playBtn.getHeight()/2;
+        playBtnHeight = Gdx.graphics.getHeight();
+        playBtnWidth = (playBtnHeight/480)*360;
+
 
         playBtnRect = new Rectangle(playBtnX, playBtnY, playBtn.getWidth(), playBtn.getHeight());
     }
@@ -57,7 +62,7 @@ public class MenuState extends State {
     public void render(SpriteBatch sb){
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(playBtn, playBtnX, playBtnY);
+        sb.draw(playBtn, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         sb.end();
     }
 
