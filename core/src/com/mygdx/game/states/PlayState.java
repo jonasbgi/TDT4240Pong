@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.AutomaticPaddleController;
+import com.mygdx.game.Ball;
 import com.mygdx.game.ManualPaddleController;
 import com.mygdx.game.Paddle;
 import com.mygdx.game.PongInputHandler;
@@ -23,14 +25,16 @@ public class PlayState extends State {
     Rectangle rightContRect;
     InputProcessor pongInputHandler;
     ManualPaddleController leftController;
-    ManualPaddleController rightController;
+    AutomaticPaddleController rightController;
+    Ball ball;
 
     protected PlayState(GameStateManager gsm) {
         super(gsm);
         cam.setToOrtho(false);
+        ball = new Ball(40,40);
 
         leftController = new ManualPaddleController(-1, this);
-        rightController = new ManualPaddleController(-1, this);
+        rightController = new AutomaticPaddleController(this, ball);
 
         leftContRect = new Rectangle(
                 0, 0, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight());
@@ -51,9 +55,9 @@ public class PlayState extends State {
 
     @Override
     public void update(float dt) {
+        ball.update(dt);
         leftPaddle.update();
         rightPadde.update();
-        /*ball.update()*/
     }
 
     @Override
@@ -62,6 +66,7 @@ public class PlayState extends State {
         sb.begin();
         sb.draw(leftPaddle.getPadTexture(), leftPaddle.getPosX(), leftPaddle.getPosY());
         sb.draw(rightPadde.getPadTexture(), rightPadde.getPosX(), rightPadde.getPosY());
+        sb.draw(ball.getTexture(), ball.getBallPos().x, ball.getBallPos().y);
         sb.end();
     }
 

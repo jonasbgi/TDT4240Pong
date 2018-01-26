@@ -33,7 +33,7 @@ public class Paddle {
     }
 
     public void update(){
-        float newY = controller.movePaddle();
+        float newY = controller.movePaddle(this.posY);
         this.posY = (int) newY;
         /*Something to set coords using controller.movePaddle()*/
     }

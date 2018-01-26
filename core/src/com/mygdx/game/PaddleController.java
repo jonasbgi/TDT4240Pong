@@ -5,5 +5,5 @@ package com.mygdx.game;
  */
 
 public interface PaddleController {
-    float movePaddle();
+    float movePaddle(float oldY);
 }

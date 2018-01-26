@@ -25,7 +25,7 @@ public class ManualPaddleController implements PaddleController {
     }
 
     @Override
-    public float movePaddle() {
+    public float movePaddle(float oldY) {
         Vector3 touchPos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
         return 0;
     }

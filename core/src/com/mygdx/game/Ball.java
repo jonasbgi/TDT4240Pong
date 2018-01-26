@@ -5,6 +5,7 @@ import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 
 /**
  * Created by lena- on 26.01.2018.
@@ -17,7 +18,6 @@ public class Ball {
     private Vector3 ballVel;
     private Rectangle bounds;
     private Texture texture;
-    private Texture ball;
 
     public Ball(int x, int y) {
         ballPos = new Vector3(x, y,0);
@@ -28,7 +28,7 @@ public class Ball {
 
     public void update(float dt) {
         if (ballPos.y > 0)
-            ballVel.add(0,-15,0);
+            ballVel.add(0,0,0);
         ballVel.scl(dt);
         ballPos.add(MOVEMENT*dt, ballVel.y, 0);
         if(ballPos.y < 0)
@@ -36,8 +36,12 @@ public class Ball {
 
         ballVel.scl(1/dt);
         bounds.setPosition(ballPos.x, ballPos.y);
-    }
 
+
+    }
+    private boolean collidesWithPaddle(){
+        return true;
+    }
     public Vector3 getBallPos() {
         return ballPos;
     }
@@ -48,7 +52,7 @@ public class Ball {
     public void dispose() {
         texture.dispose();
     }
-
+    public Texture getTexture(){ return texture; }
 
 
 }
