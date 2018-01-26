@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.ManualPaddleController;
 import com.mygdx.game.Paddle;
 import com.mygdx.game.PongInputHandler;
 
@@ -21,16 +22,22 @@ public class PlayState extends State {
     Rectangle leftContRect;
     Rectangle rightContRect;
     InputProcessor pongInputHandler;
+    ManualPaddleController leftController;
+    ManualPaddleController rightController;
 
     protected PlayState(GameStateManager gsm) {
         super(gsm);
         cam.setToOrtho(false);
+
+        leftController = new ManualPaddleController(-1, this);
+        rightController = new ManualPaddleController(-1, this);
+
         leftContRect = new Rectangle(
                 0, 0, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight());
         rightContRect = new Rectangle(
                 Gdx.graphics.getWidth()/2, 0, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight());
-        leftPaddle = new Paddle(20, leftContRect);
-        rightPadde = new Paddle(Gdx.graphics.getWidth() - 20, rightContRect);
+        leftPaddle = new Paddle(20, leftContRect, leftController);
+        rightPadde = new Paddle(Gdx.graphics.getWidth() - 20, rightContRect, rightController);
 
         pongInputHandler = new PongInputHandler(leftContRect, rightContRect);
 
@@ -44,7 +51,9 @@ public class PlayState extends State {
 
     @Override
     public void update(float dt) {
-
+        leftPaddle.update();
+        rightPadde.update();
+        /*ball.update()*/
     }
 
     @Override
