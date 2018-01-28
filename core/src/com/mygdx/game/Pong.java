@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.states.GameStateManager;
 import com.mygdx.game.states.MenuState;
 
@@ -13,8 +14,8 @@ public class Pong extends ApplicationAdapter {
 	//public static final int HEIGHT = Gdx.graphics.getHeight();
 	public static final String title = "Pong";
 	private GameStateManager gsm;
-	SpriteBatch sb;
-	Texture img;
+	private SpriteBatch sb;
+	private Texture img;
 	
 	@Override
 	public void create () {
@@ -37,4 +38,5 @@ public class Pong extends ApplicationAdapter {
 		sb.dispose();
 		img.dispose();
 	}
+
 }

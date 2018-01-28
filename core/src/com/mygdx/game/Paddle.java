@@ -28,13 +28,12 @@ public class Paddle {
         this.controller = controller;
 
         bounds = new Rectangle(posX, posY, padTexture.getWidth(), padTexture.getHeight());
-
-
     }
 
     public void update(){
         float newY = controller.movePaddle(this.posY);
         this.posY = (int) newY;
+        bounds.setPosition(posX, posY);
         /*Something to set coords using controller.movePaddle()*/
     }
 
@@ -51,5 +50,7 @@ public class Paddle {
     public Texture getPadTexture(){
         return padTexture;
     }
+
+    public Rectangle getBounds(){ return bounds; }
 
 }
