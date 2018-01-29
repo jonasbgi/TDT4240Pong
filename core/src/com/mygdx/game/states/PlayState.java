@@ -73,11 +73,11 @@ public class PlayState extends State {
 
         //Sjekk scoring
         if(ball.getBallPos().x < 0){
-            leftScore += 1;
+            rightScore += 1;
             System.out.print(leftScore + " - " + rightScore);
             ball.scored(1, Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
         } else if (ball.getBallPos().x > Gdx.graphics.getWidth()){
-            rightScore += 1;
+            leftScore += 1;
             ball.scored(-1, Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
         }
     }
