@@ -30,8 +30,8 @@ public class Paddle {
         bounds = new Rectangle(posX, posY, padTexture.getWidth(), padTexture.getHeight());
     }
 
-    public void update(){
-        float newY = controller.movePaddle(this.posY);
+    public void update(float dt){
+        float newY = controller.movePaddle(this.posY, dt);
         this.posY = (int) newY;
         bounds.setPosition(posX, posY);
         /*Something to set coords using controller.movePaddle()*/

@@ -65,8 +65,8 @@ public class PlayState extends State {
     @Override
     public void update(float dt) {
         ball.update(dt);
-        leftPaddle.update();
-        rightPaddle.update();
+        leftPaddle.update(dt);
+        rightPaddle.update(dt);
         if(ball.collides(leftPaddle.getBounds()) || ball.collides(rightPaddle.getBounds())){
             ball.bounce();
         }
@@ -76,9 +76,19 @@ public class PlayState extends State {
             rightScore += 1;
             System.out.print(leftScore + " - " + rightScore);
             ball.scored(1, Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
+            if(rightScore > 5){
+                EndState end = new EndState(gsm);
+                end.setWinner("CPU");
+                gsm.push(end);
+            }
         } else if (ball.getBallPos().x > Gdx.graphics.getWidth()){
             leftScore += 1;
             ball.scored(-1, Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
+            if(leftScore > 5){
+                EndState end = new EndState(gsm);
+                end.setWinner("You");
+                gsm.push(end);
+            }
         }
     }
 

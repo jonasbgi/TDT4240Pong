@@ -22,7 +22,7 @@ public class Ball {
 
     public Ball(int x, int y) {
         ballPos = new Vector3(x, y,0);
-        ballVel = new Vector3(200,100,0);
+        ballVel = new Vector3(300,150,0);
         texture = new Texture("ball.png");
         bounds = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
     }
@@ -56,7 +56,11 @@ public class Ball {
     public Texture getTexture(){ return texture; }
 
     public boolean collides(Rectangle paddle){
-        return paddle.overlaps(bounds);
+        if(paddle.overlaps(bounds)){
+            ballVel.scl((float) 1.06);
+            return true;
+        }
+        else{ return false;}
     }
 
     public void scored(int direction, int x, int y){
