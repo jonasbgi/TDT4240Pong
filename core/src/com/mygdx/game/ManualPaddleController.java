@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.states.PlayState;
 import com.mygdx.game.states.State;
@@ -13,11 +14,13 @@ import com.mygdx.game.states.State;
 public class ManualPaddleController implements PaddleController {
     int pointer;
     PlayState playState;
+    Camera cam;
 
 
-    public ManualPaddleController(int pointer, PlayState state){
+    public ManualPaddleController(int pointer, PlayState state, Camera cam){
         this.pointer = pointer;
         this.playState = state;
+        this.cam = cam;
     }
 
     public void setPointer(int newPointer){
@@ -27,6 +30,7 @@ public class ManualPaddleController implements PaddleController {
     @Override
     public float movePaddle(float oldY) {
         Vector3 touchPos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
-        return 0;
+        cam.unproject(touchPos);
+        return touchPos.y;
     }
 }

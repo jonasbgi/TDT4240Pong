@@ -59,5 +59,11 @@ public class Ball {
         return paddle.overlaps(bounds);
     }
 
+    public void scored(int direction, int x, int y){
+        ballPos = new Vector3(x, y,0);
+        //direction = 1 eller -1
+        ballVel = new Vector3(200*direction,100,0);
+    }
+
 
 }

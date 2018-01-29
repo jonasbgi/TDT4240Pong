@@ -28,8 +28,9 @@ public class PlayState extends State {
     private ManualPaddleController leftController;
     private AutomaticPaddleController rightController;
     private Ball ball;
-    private int leftScore;
-    private int rightScore;
+
+    int leftScore;
+    int rightScore;
 
     protected PlayState(GameStateManager gsm) {
         super(gsm);
@@ -39,7 +40,7 @@ public class PlayState extends State {
         leftScore = 0;
         rightScore = 0;
 
-        leftController = new ManualPaddleController(-1, this);
+        leftController = new ManualPaddleController(-1, this, cam);
         rightController = new AutomaticPaddleController(this, ball);
 
         leftContRect = new Rectangle(
@@ -68,13 +69,14 @@ public class PlayState extends State {
             ball.bounce();
         }
 
-        //Bare for testing:
+        //Sjekk scoring
         if(ball.getBallPos().x < 0){
             leftScore += 1;
             System.out.print(leftScore + " - " + rightScore);
-            gsm.push(new PlayState(gsm));
+            ball.scored(1, Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
         } else if (ball.getBallPos().x > Gdx.graphics.getWidth()){
             rightScore += 1;
+            ball.scored(-1, Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
         }
     }
 
