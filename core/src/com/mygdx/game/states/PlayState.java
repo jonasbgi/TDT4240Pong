@@ -2,6 +2,7 @@ package com.mygdx.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.AutomaticPaddleController;
@@ -28,9 +29,9 @@ public class PlayState extends State {
     private ManualPaddleController leftController;
     private AutomaticPaddleController rightController;
     private Ball ball;
-
-    int leftScore;
-    int rightScore;
+    private int leftScore;
+    private int rightScore;
+    private BitmapFont font;
 
     protected PlayState(GameStateManager gsm) {
         super(gsm);
@@ -39,6 +40,7 @@ public class PlayState extends State {
 
         leftScore = 0;
         rightScore = 0;
+        font = new BitmapFont();
 
         leftController = new ManualPaddleController(-1, this, cam);
         rightController = new AutomaticPaddleController(this, ball);
@@ -87,6 +89,8 @@ public class PlayState extends State {
         sb.draw(leftPaddle.getPadTexture(), leftPaddle.getPosX(), leftPaddle.getPosY());
         sb.draw(rightPaddle.getPadTexture(), rightPaddle.getPosX(), rightPaddle.getPosY());
         sb.draw(ball.getTexture(), ball.getBallPos().x, ball.getBallPos().y);
+        font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        font.draw(sb, "" + leftScore, 200, 400);
         sb.end();
     }
 

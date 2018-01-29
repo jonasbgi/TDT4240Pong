@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
  */
 
 public class Ball {
-    private static final int MOVEMENT = 100;
+  //  private static final int MOVEMENT = 100;
 
     private Vector3 ballPos;
     private Vector3 ballVel;
