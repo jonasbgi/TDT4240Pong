@@ -90,9 +90,9 @@ public class PlayState extends State {
         sb.draw(rightPaddle.getPadTexture(), rightPaddle.getPosX(), rightPaddle.getPosY());
         sb.draw(ball.getTexture(), ball.getBallPos().x, ball.getBallPos().y);
         font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-        font.draw(sb, "Left player: " + leftScore, 100, 400);
+        font.draw(sb, "You: " + leftScore, 100, 400);
         font.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-        font.draw(sb, "Right player: " + rightScore, 450, 400);
+        font.draw(sb, "CPU: " + rightScore, 450, 400);
         sb.end();
     }
 
