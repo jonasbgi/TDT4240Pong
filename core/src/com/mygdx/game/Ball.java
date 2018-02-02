@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
  * Created by lena- on 26.01.2018.
  */
 
+
 public class Ball {
   //  private static final int MOVEMENT = 100;
 

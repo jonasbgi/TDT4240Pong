@@ -12,8 +12,8 @@ public class EndState extends State {
     private String winner;
     private BitmapFont scrrenText;
 
-    protected EndState(GameStateManager gsm) {
-        super(gsm);
+    protected EndState() {
+        super();
         cam.setToOrtho(false);
         scrrenText = new BitmapFont();
         scrrenText.setColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -31,7 +31,7 @@ public class EndState extends State {
             while(gsm.hasStates()){
                 gsm.pop();
             }
-            gsm.push(new MenuState(gsm));
+            gsm.push(new MenuState());
         }
     }
 

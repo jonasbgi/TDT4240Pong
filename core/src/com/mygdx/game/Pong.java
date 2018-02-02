@@ -13,16 +13,16 @@ public class Pong extends ApplicationAdapter {
 	//public static final int WIDTH = Gdx.graphics.getWidth();
 	//public static final int HEIGHT = Gdx.graphics.getHeight();
 	public static final String title = "Pong";
-	private GameStateManager gsm;
 	private SpriteBatch sb;
 	private Texture img;
-	
+
+	private GameStateManager gsm = GameStateManager.getGsm();
+
 	@Override
 	public void create () {
 		sb = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
-		gsm = new GameStateManager();
-		gsm.push(new MenuState(gsm));
+		gsm.push(new MenuState());
 	}
 
 	@Override
