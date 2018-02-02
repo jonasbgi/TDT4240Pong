@@ -1,5 +1,6 @@
 package com.mygdx.game.states;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,9 +20,12 @@ public class MenuState extends State {
     int playBtnHeight;
     int playBtnWidth;
     Rectangle playBtnRect;
+    private GameStateManager gsm;
 
-    public MenuState(GameStateManager gsm) {
-        super(gsm);
+    public MenuState() {
+        super();
+        gsm = GameStateManager.getGsm();
+
         cam.setToOrtho(false);
         playBtn = new Texture("btnPlay.png");
 
@@ -46,7 +50,7 @@ public class MenuState extends State {
             cam.unproject(inputCoords);
 
             if(playBtnRect.contains(inputCoords.x, inputCoords.y)){
-                gsm.push(new PlayState(gsm));
+                gsm.push(new PlayState());
             }
         }
     }
