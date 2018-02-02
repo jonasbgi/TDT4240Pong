@@ -20,10 +20,11 @@ public class MenuState extends State {
     int playBtnHeight;
     int playBtnWidth;
     Rectangle playBtnRect;
+    private GameStateManager gsm;
 
     public MenuState() {
         super();
-        GameStateManager gsm = GameStateManager.getGsm();
+        gsm = GameStateManager.getGsm();
 
         cam.setToOrtho(false);
         playBtn = new Texture("btnPlay.png");

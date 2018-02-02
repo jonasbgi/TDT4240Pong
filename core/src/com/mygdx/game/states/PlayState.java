@@ -32,11 +32,12 @@ public class PlayState extends State {
     private int rightScore;
     private BitmapFont font;
     private Ball ball;
+    private GameStateManager gsm;
 
 
     protected PlayState() {
         super();
-        GameStateManager gsm = GameStateManager.getGsm();
+        gsm = GameStateManager.getGsm();
         cam.setToOrtho(false);
         ball = new Ball(Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
 
