@@ -28,13 +28,15 @@ public class PlayState extends State {
     private InputProcessor pongInputHandler;
     private ManualPaddleController leftController;
     private AutomaticPaddleController rightController;
-    private Ball ball;
     private int leftScore;
     private int rightScore;
     private BitmapFont font;
+    private Ball ball;
 
-    protected PlayState(GameStateManager gsm) {
-        super(gsm);
+
+    protected PlayState() {
+        super();
+        GameStateManager gsm = GameStateManager.getGsm();
         cam.setToOrtho(false);
         ball = new Ball(Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
 
@@ -77,7 +79,7 @@ public class PlayState extends State {
             System.out.print(leftScore + " - " + rightScore);
             ball.scored(1, Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
             if(rightScore > 5){
-                EndState end = new EndState(gsm);
+                EndState end = new EndState();
                 end.setWinner("CPU");
                 gsm.push(end);
             }
@@ -85,7 +87,7 @@ public class PlayState extends State {
             leftScore += 1;
             ball.scored(-1, Gdx.graphics.getWidth() / 2,Gdx.graphics.getHeight() / 2);
             if(leftScore > 5){
-                EndState end = new EndState(gsm);
+                EndState end = new EndState();
                 end.setWinner("You");
                 gsm.push(end);
             }
