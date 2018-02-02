@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.game.AutomaticPaddleController;
 import com.mygdx.game.Ball;
+import com.mygdx.game.ManualPaddle;
+import com.mygdx.game.AutoPaddle;
 import com.mygdx.game.ManualPaddleController;
 import com.mygdx.game.Paddle;
 import com.mygdx.game.Pong;
@@ -21,8 +23,8 @@ import org.w3c.dom.css.Rect;
 * */
 
 public class PlayState extends State {
-    private Paddle leftPaddle;
-    private Paddle rightPaddle;
+    private ManualPaddle leftPaddle;
+    private AutoPaddle rightPaddle;
     private Rectangle leftContRect;
     private Rectangle rightContRect;
     private InputProcessor pongInputHandler;
@@ -42,19 +44,19 @@ public class PlayState extends State {
         rightScore = 0;
         font = new BitmapFont();
 
-        leftController = new ManualPaddleController(-1, this, cam);
-        rightController = new AutomaticPaddleController(this, ball);
+        /* leftController = new ManualPaddleController(-1, this, cam);
+        rightController = new AutomaticPaddleController(this, ball);*/
 
         leftContRect = new Rectangle(
                 0, 0, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight());
         rightContRect = new Rectangle(
                 Gdx.graphics.getWidth()/2, 0, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight());
-        leftPaddle = new Paddle(20, leftContRect, leftController);
-        rightPaddle = new Paddle(Gdx.graphics.getWidth() - 20, rightContRect, rightController);
+
+        leftPaddle = new ManualPaddle(20, leftContRect, cam);
+        rightPaddle = new AutoPaddle(Gdx.graphics.getWidth() - 20, rightContRect, cam);
+        rightPaddle.setBall(ball);
 
         pongInputHandler = new PongInputHandler(leftContRect, rightContRect);
-
-        System.out.println("Playstate initialized");
     }
 
     @Override

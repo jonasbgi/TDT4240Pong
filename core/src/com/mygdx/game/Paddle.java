@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -11,39 +12,33 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  * Created by jonas on 25/01/2018.
  */
 
-public class Paddle {
+public abstract class Paddle {
     final int posX;
-    int posY;
+    float posY;
     Texture padTexture;
     Rectangle bounds;
     Rectangle controlSpace;
-    PaddleController controller;
+    Camera cam;
 
-    public Paddle(int startX, Rectangle controlRect, PaddleController controller){
+    public Paddle(int startX, Rectangle controlRect, Camera cam){
         posX = startX;
         controlSpace = controlRect;
         padTexture = new Texture("paddleImg.png");
-        posY = (int)(Gdx.graphics.getHeight()/2 - padTexture.getHeight()/2);
-
-        this.controller = controller;
+        posY = (Gdx.graphics.getHeight()/2 - padTexture.getHeight()/2);
 
         bounds = new Rectangle(posX, posY, padTexture.getWidth(), padTexture.getHeight());
+
+        this.cam = cam;
     }
 
-    public void update(float dt){
-        float newY = controller.movePaddle(this.posY, dt);
-        this.posY = (int) newY;
-        bounds.setPosition(posX, posY);
-        /*Something to set coords using controller.movePaddle()*/
-    }
-
+    public abstract void update(float dt);
 
 
     public int getPosX() {
         return posX;
     }
 
-    public int getPosY() {
+    public float getPosY() {
         return posY;
     }
 
